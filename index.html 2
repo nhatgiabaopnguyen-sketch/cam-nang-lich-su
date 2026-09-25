@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Cẩm nang tự học Lịch sử 11</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --primary: #123c69;
+      --primary-light: #1f679f;
+      --accent: #e4a11b;
+      --cream: #fffaf0;
+      --text: #1c2733;
+      --muted: #687582;
+      --border: #e7ebef;
+      --white: #ffffff;
+      --shadow: 0 12px 35px rgba(18, 60, 105, 0.1);
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Be Vietnam Pro", sans-serif;
+      color: var(--text);
+      background: #f6f8fb;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 32px));
+      margin: auto;
+    }
+
+    /* Header */
+    .topbar {
+      background: var(--primary);
+      color: var(--white);
+      font-size: 14px;
+    }
+
+    .topbar-inner {
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: max-content;
+    }
+
+    .brand-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 14px;
+      font-size: 23px;
+      box-shadow: 0 7px 18px rgba(18, 60, 105, 0.25);
+    }
+
+    .brand-title {
+      color: var(--primary);
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .brand-subtitle {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .nav a {
+      padding: 9px 13px;
+      border-radius: 10px;
+      color: #41505d;
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      color: var(--primary);
+      background: #edf5fb;
+    }
+
+    .menu-button {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: var(--primary);
+      font-size: 27px;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      overflow: hidden;
+      padding: 84px 0 92px;
+      color: var(--white);
+      background:
+        linear-gradient(110deg, rgba(9, 38, 69, 0.97), rgba(21, 91, 143, 0.88)),
+        url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1800&q=80")
+        center / cover;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 64px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: #ffe29a;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      max-width: 700px;
+      margin-bottom: 20px;
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 1.12;
+      letter-spacing: -1.5px;
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: #e9f3fb;
+      font-size: 17px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 47px;
+      padding: 0 20px;
+      border: 0;
+      border-radius: 12px;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .button-primary {
+      color: var(--primary);
+      background: var(--accent);
+    }
+
+    .button-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(228, 161, 27, 0.3);
+    }
+
+    .button-outline {
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,.45);
+      background: rgba(255,255,255,.08);
+    }
+
+    .button-outline:hover {
+      background: rgba(255,255,255,.18);
+    }
+
+    .hero-card {
+      padding: 28px;
+      color: var(--text);
+      background: rgba(255,255,255,.95);
+      border: 1px solid rgba(255,255,255,.5);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h3 {
+      margin-bottom: 14px;
+      color: var(--primary);
+      font-size: 20px;
+    }
+
+    .hero-card ul {
+      display: grid;
+      gap: 12px;
+      list-style: none;
+    }
+
+    .hero-card li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: #50606d;
+      font-size: 14px;
+    }
+
+    .hero-card li::before {
+      content: "✓";
+      display: grid;
+      flex: 0 0 22px;
+      width: 22px;
+      height: 22px;
+      place-items: center;
+      color: var(--white);
+      background: var(--primary-light);
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    /* Main content */
+    .section {
+      padding: 76px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+
+    .section-heading h2 {
+      color: var(--primary);
+      font-size: clamp(25px, 4vw, 36px);
+      line-height: 1.25;
+    }
+
+    .section-heading p {
+      max-width: 540px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: min(100%, 310px);
+      padding: 0 15px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .search-box input {
+      width: 100%;
+      min-height: 44px;
+      border: 0;
+      outline: 0;
+      font: inherit;
+      font-size: 14px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 15px rgba(25, 50, 75, 0.03);
+      transition: 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #b8d4e9;
+      box-shadow: var(--shadow);
+    }
+
+    .card-icon {
+      display: grid;
+      width: 50px;
+      height: 50px;
+      margin-bottom: 18px;
+      place-items: center;
+      color: var(--primary);
+      background: #edf5fb;
+      border-radius: 15px;
+      font-size: 23px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      color: var(--primary);
+      font-size: 18px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .study-layout {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .chapter-list,
+    .tip-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 15px rgba(25, 50, 75, 0.03);
+    }
+
+    .chapter-list {
+      overflow: hidden;
+    }
+
+    .chapter {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      transition: .2s ease;
+    }
+
+    .chapter:last-child {
+      border-bottom: 0;
+    }
+
+    .chapter:hover {
+      background: #f7fbfe;
+    }
+
+    .chapter-number {
+      display: grid;
+      flex: 0 0 40px;
+      width: 40px;
+      height: 40px;
+      place-items: center;
+      color: var(--white);
+      background: var(--primary);
+      border-radius: 12px;
+      font-weight: 800;
+    }
+
+    .chapter-content {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex: 1;
+    }
+
+    .chapter h3 {
+      color: var(--primary);
+      font-size: 16px;
+    }
+
+    .chapter p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .chapter-arrow {
+      color: var(--primary-light);
+      font-size: 22px;
+    }
+
+    .tip-box {
+      padding: 28px;
+      background: linear-gradient(145deg, #fffaf0, #fff);
+      border-color: #f4dfac;
+    }
+
+    .tip-box h3 {
+      margin-bottom: 14px;
+      color: #9a6810;
+      font-size: 20px;
+    }
+
+    .tip-box p {
+      color: #665a42;
+      font-size: 14px;
+    }
+
+    .quote {
+      margin-top: 18px;
+      padding: 15px;
+      color: #785713;
+      background: #fff3cd;
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    /* Footer */
+    footer {
+      padding: 42px 0 24px;
+      color: #d5e6f2;
+      background: #092942;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 30px;
+    }
+
+    footer h3 {
+      margin-bottom: 12px;
+      color: var(--white);
+      font-size: 17px;
+    }
+
+    footer p,
+    footer a {
+      color: #b4ccdc;
+      font-size: 14px;
+    }
+
+    footer a:hover {
+      color: var(--white);
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 7px;
+    }
+
+    .copyright {
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.14);
+      color: #91aec0;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-grid,
+      .study-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 62px 0 70px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .topbar-inner {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .topbar-inner span:last-child {
+        display: none;
+      }
+
+      .header-inner {
+        min-height: 66px;
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      .nav {
+        display: none;
+        position: absolute;
+        top: 66px;
+        left: 0;
+        right: 0;
+        padding: 12px 16px 18px;
+        flex-direction: column;
+        align-items: stretch;
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 12px 20px rgba(0,0,0,.08);
+      }
+
+      .nav.open {
+        display: flex;
+      }
+
+      .nav a {
+        padding: 12px 14px;
+      }
+
+      .brand-title {
+        font-size: 15px;
+      }
+
+      .brand-subtitle {
+        font-size: 11px;
+      }
+
+      .cards,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 56px 0;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-heading p {
+        margin-top: 10px;
+      }
+
+      .search-box {
+        width: 100%;
+        margin-top: 18px;
+      }
+
+      .chapter {
+        padding: 17px;
+      }
+
+      .chapter-arrow {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>📚 Không gian tự học Lịch sử 11</span>
+      <span>Học theo chủ đề · Ôn tập có hệ thống</span>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#trang-chu" class="brand">
+        <div class="brand-icon">🏛️</div>
+        <div>
+          <div class="brand-title">Cẩm nang tự học Lịch sử 11</div>
+          <div class="brand-subtitle">Học hiểu · Nhớ lâu · Vận dụng tốt</div>
+        </div>
+      </a>
+
+      <button class="menu-button" id="menuButton" aria-label="Mở menu">
+        ☰
+      </button>
+
+      <nav class="nav" id="mainNav">
+        <a href="#trang-chu" class="active">Trang chủ</a>
+        <a href="#chuyen-de">Chuyên đề</a>
+        <a href="#tai-lieu">Tài liệu</a>
+        <a href="#meo-hoc">Mẹo học</a>
+        <a href="#lien-he">Liên hệ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="trang-chu">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">✦ HỌC LỊCH SỬ THEO CÁCH DỄ HIỂU HƠN</div>
+
+          <h1>Cùng khám phá dòng chảy lịch sử Việt Nam và thế giới</h1>
+
+          <p>
+            Một không gian học tập trực quan dành cho học sinh lớp 11:
+            hệ thống kiến thức, bài học trọng tâm, câu hỏi ôn tập và phương
+            pháp ghi nhớ hiệu quả.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#chuyen-de">
+              Khám phá chuyên đề
+            </a>
+            <a class="button button-outline" href="#tai-lieu">
+              Xem tài liệu
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <h3>Bạn sẽ tìm thấy gì?</h3>
+          <ul>
+            <li>Tóm tắt kiến thức theo từng bài học.</li>
+            <li>Sơ đồ tư duy giúp ghi nhớ nhanh.</li>
+            <li>Câu hỏi tự luyện và nội dung trọng tâm.</li>
+            <li>Mẹo làm bài kiểm tra Lịch sử hiệu quả.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tai-lieu">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <h2>Kho học tập của bạn</h2>
+            <p>
+              Chọn một mục để bắt đầu ôn tập theo đúng nhu cầu.
+            </p>
+          </div>
+
+          <label class="search-box">
+            🔎
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Tìm nội dung..."
+              aria-label="Tìm nội dung"
+            >
+          </label>
+        </div>
+
+        <div class="cards" id="resourceCards">
+          <a class="card searchable" href="#chuyen-de" data-search="bài học chuyên đề">
+            <div class="card-icon">📖</div>
+            <h3>Bài học</h3>
+            <p>Hệ thống các bài học theo chương trình Lịch sử 11.</p>
+          </a>
+
+          <a class="card searchable" href="#so-do" data-search="sơ đồ tư duy mindmap">
+            <div class="card-icon">🧠</div>
+            <h3>Sơ đồ tư duy</h3>
+            <p>Nhìn tổng quan kiến thức bằng sơ đồ ngắn gọn.</p>
+          </a>
+
+          <a class="card searchable" href="#cau-hoi" data-search="câu hỏi bài tập luyện tập">
+            <div class="card-icon">✍️</div>
+            <h3>Câu hỏi ôn tập</h3>
+            <p>Luyện khả năng nhớ, hiểu và vận dụng kiến thức.</p>
+          </a>
+
+          <a class="card searchable" href="#meo-hoc" data-search="mẹo học phương pháp ghi nhớ">
+            <div class="card-icon">💡</div>
+            <h3>Mẹo học</h3>
+            <p>Phương pháp học nhanh, nhớ lâu và tránh học vẹt.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="chuyen-de" style="background: #edf5fb;">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <h2>Các chuyên đề trọng tâm</h2>
+            <p>
+              Bạn có thể thay các tiêu đề dưới đây bằng nội dung thật của trang gốc.
+            </p>
+          </div>
+        </div>
+
+        <div class="study-layout">
+          <div class="chapter-list">
+            <a class="chapter" href="#">
+              <div class="chapter-content">
+                <div class="chapter-number">01</div>
+                <div>
+                  <h3>Các cuộc cách mạng tư sản</h3>
+                  <p>Nguyên nhân, diễn biến, kết quả và ý nghĩa.</p>
+                </div>
+              </div>
+              <div class="chapter-arrow">›</div>
+            </a>
+
+            <a class="chapter" href="#">
+              <div class="chapter-content">
+                <div class="chapter-number">02</div>
+                <div>
+                  <h3>Sự hình thành chủ nghĩa đế quốc</h3>
+                  <p>Những chuyển biến quan trọng trong lịch sử thế giới.</p>
+                </div>
+              </div>
+              <div class="chapter-arrow">›</div>
+            </a>
+
+            <a class="chapter" href="#">
+              <div class="chapter-content">
+                <div class="chapter-number">03</div>
+                <div>
+                  <h3>Lịch sử Việt Nam cận đại</h3>
+                  <p>Các sự kiện, nhân vật và mốc thời gian cần nhớ.</p>
+                </div>
+              </div>
+              <div class="chapter-arrow">›</div>
+            </a>
+
+            <a class="chapter" href="#">
+              <div class="chapter-content">
+                <div class="chapter-number">04</div>
+                <div>
+                  <h3>Phong trào giải phóng dân tộc</h3>
+                  <p>So sánh và nhận xét các phong trào tiêu biểu.</p>
+                </div>
+              </div>
+              <div class="chapter-arrow">›</div>
+            </a>
+          </div>
+
+          <aside class="tip-box" id="meo-hoc">
+            <h3>💡 Mẹo học hiệu quả</h3>
+            <p>
+              Đừng cố ghi nhớ toàn bộ bài học cùng lúc. Hãy chia kiến thức
+              thành các nhóm: thời gian, nguyên nhân, diễn biến, kết quả và
+              ý nghĩa.
+            </p>
+
+            <div class="quote">
+              “Hiểu mối liên hệ giữa các sự kiện sẽ giúp bạn nhớ lâu hơn
+              việc học thuộc từng dòng.”
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="lien-he">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>Cẩm nang tự học Lịch sử 11</h3>
+          <p>
+            Website hỗ trợ học tập và ôn luyện Lịch sử theo hướng trực quan,
+            dễ hiểu, dễ ghi nhớ.
+          </p>
+        </div>
+
+        <div>
+          <h3>Điều hướng</h3>
+          <div class="footer-links">
+            <a href="#trang-chu">Trang chủ</a>
+            <a href="#chuyen-de">Chuyên đề</a>
+            <a href="#tai-lieu">Tài liệu</a>
+          </div>
+        </div>
+
+        <div>
+          <h3>Liên hệ</h3>
+          <div class="footer-links">
+            <a href="mailto:contact@example.com">contact@example.com</a>
+            <a href="#">Gửi góp ý</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="copyright">
+        © 2026 Cẩm nang tự học Lịch sử 11 · Thiết kế cho mục đích học tập
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.getElementById("menuButton");
+    const mainNav = document.getElementById("mainNav");
+    const searchInput = document.getElementById("searchInput");
+    const searchableItems = document.querySelectorAll(".searchable");
+
+    menuButton.addEventListener("click", () => {
+      mainNav.classList.toggle("open");
+    });
+
+    document.querySelectorAll(".nav a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mainNav.classList.remove("open");
+
+        document.querySelectorAll(".nav a").forEach((item) => {
+          item.classList.remove("active");
+        });
+
+        link.classList.add("active");
+      });
+    });
+
+    searchInput.addEventListener("input", (event) => {
+      const keyword = event.target.value.toLowerCase().trim();
+
+      searchableItems.forEach((item) => {
+        const searchableText = item.dataset.search.toLowerCase();
+        const isMatched = searchableText.includes(keyword);
+
+        item.classList.toggle("hidden", !isMatched);
+      });
+    });
+  </script>
+</body>
+</html>
